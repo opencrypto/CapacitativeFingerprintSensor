@@ -374,10 +374,9 @@ int CFS_Recv(char * data, int data_len) {
                         // Fingerprint High-Level Functions
                         // ================================
 
-int CFP_Check4Sensor(Stream     & SensorCom,
-                     int          serSpeed   = -1,
-                     int          defTimeout = 200,
-                     CFS_Params * params     = NULL) {
+int CFP_FindSensor(Stream     & SensorCom,
+                   int          serSpeed,
+                   CFS_Params * params) {
   // Let's Check we have a sensor attached and we can
   // verify the password. Use the params to modify the
   // defaults
@@ -442,10 +441,10 @@ int CFP_Check4Sensor(Stream     & SensorCom,
   return 1;
 }
 
-int CFS_SearchFinger (Stream & SensorCom,
-                      int      timeOut,
-                      int      threashold,
-                      bool     SecurityOfficerOnly) {
+int CFS_SearchTemplate (Stream & SensorCom,
+                        int      timeOut,
+                        int      threashold,
+                        bool     SecurityOfficerOnly) {
 
   int defDelayPeriod = 240; // Built-in Delay for processing
   int delayPeriod = 120;
@@ -538,25 +537,41 @@ int CFS_SearchFinger (Stream & SensorCom,
 }
 
 /* !\brief Clears one template from the fingerprint DB */
-int CFS_ClearTemplate(int      templateNumber,
-                      Stream * SerialPort) {
-  // DEBUG
+
+int CFS_ClearTemplates (Stream & SerialPort,
+					    int      rangeStart,
+					    int      rangeEnd) {
+  // DEBUG: PLACEHOLDER: Missing Code
   printf("CFS_ClearTemplate() Not Implemented, yet.\n");
   return -1;
 }
+
                       
 /* !\brief Clears all user templates from the fingerprint DB */
-int CFS_ClearUserTemplates(Stream * SerialPort) {
-  // DEBUG
+
+int CFS_ClearUserTemplates (Stream & SerialPort) {
+  // DEBUG: PLACEHOLDER: Missing Code
   printf("CFS_ClearUserTemplates() Not Implemented, yet.\n");
   return -1;
 }
 
-/* !\brief Clears all the Security Officer (SO) templates from the fingerprint DB */
+
+/* !\brief Clears all the Security Officer (SO) templates from the
+           fingerprint DB */
+
 int CFS_ClearSOTemplates(Stream * SerialPort) {
   {
-  // DEBUG
+  // DEBUG: PLACEHOLDER: Missing Code
   printf("CFS_ClearSOTemplates() Not Implemented, yet.\n");
   return -1;
 }
+}
+
+/* !\brief Enrolls a new Finger into the Sensor's DB */
+
+int CFS_Enroll(Stream & SerialPort, bool isSecurityOfficer) {
+
+	// DEBUG: PLACEHOLDER: MISSING CODE
+	if (CFS_DEBUG_IS_ENABLED) printf("CFS_Enroll() Not Implemented, yet.\n");
+	return -1;
 }
