@@ -1,15 +1,15 @@
-#ifndef CAPACITATIVE_FINGERPRINT_SENSOR_H
-#define CAPACITATIVE_FINGERPRINT_SENSOR_H
+#ifndef AD013_FINGERPRINT_SENSOR_HEADER
+#define AD013_FINGERPRINT_SENSOR_HEADER
 
 // Use different max sizes if needed
-#define CFS_MAX_PARAMS_SIZE     20
+#define AD013_MAX_PARAMS_SIZE     20
 
 // Static Parameters Buffer
 typedef struct params_st {
-  char buff[CFS_MAX_PARAMS_SIZE];
+  char buff[AD013_MAX_PARAMS_SIZE];
   char devId[4];
   int size;
-} CFS_Params;
+} AD013_Params;
 
 
 /*! \brief Establishes a connection with the sensor
@@ -37,9 +37,9 @@ typedef struct params_st {
  * returns negative values for error conditions.
  * 
  */
-int CFS_FindSensor(Stream     & mySerial,
+int AD013_FindSensor(Stream     & mySerial,
                    int          serSpeed = -1,
-                   CFS_Params * params   = NULL);
+                   AD013_Params * params   = NULL);
 
 
 /*
@@ -60,7 +60,7 @@ int CFS_FindSensor(Stream     & mySerial,
  * reserved for the Security Officer).
  * 
  */
-int CFS_SearchTemplate (int      timeOut             = 5000,
+int AD013_SearchTemplate (int      timeOut             = 5000,
                         int      threashold          = 50,
                         Stream * SerialPort          = NULL,
                         bool     SecurityOfficerOnly = false);
@@ -75,7 +75,7 @@ int CFS_SearchTemplate (int      timeOut             = 5000,
  * 
  * The function returns 1 in case of success and -1 if any error occurs.
  */
-int CFS_ClearTemplates(Stream & SerialPort,
+int AD013_ClearTemplates(Stream & SerialPort,
 	                   int      startTemplateNumber =  0,
 	                   int      endTemplateNumber   = 99);
                       
@@ -88,7 +88,7 @@ int CFS_ClearTemplates(Stream & SerialPort,
  * 
  * The function returns 1 in case of success and -1 if any error occurs.
  */
-int CFS_ClearUserTemplates(Stream & SerialPort);
+int AD013_ClearUserTemplates(Stream & SerialPort);
 
 /* !\brief Clears all the Security Officer (SO) templates from the fingerprint DB
  *  
@@ -99,7 +99,7 @@ int CFS_ClearUserTemplates(Stream & SerialPort);
  * 
  * The function returns 1 in case of success and -1 if any error occurs.
  */
-int CFS_ClearSecurityOfficerTemplates(Stream & SerialPort);
+int AD013_ClearSecurityOfficerTemplates(Stream & SerialPort);
 
 
 /* !\brief Enrolls a new Finger in the Sensor's DB
@@ -111,6 +111,6 @@ int CFS_ClearSecurityOfficerTemplates(Stream & SerialPort);
  * has successfully been saved. In case of errors, the function returns -1.
  *
  */
-int CFS_Enroll(Stream & SerialPort, bool isSecurityOfficer);
+int AD013_Enroll(Stream & SerialPort, bool isSecurityOfficer);
 
-#endif // CAPACITATIVE_FINGERPRINT_SENSOR_H
+#endif // AD013_FINGERPRINT_SENSOR_HEADER
